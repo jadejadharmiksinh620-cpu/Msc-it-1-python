@@ -20,10 +20,21 @@ for i in range(n):
         grade='E'
     else:
         grade="Fail"
-
     student_detail.append([name,roll,total,percentage,grade])
-        
-print(student_detail)
+student_detail.sort(key=lambda x: x[2],reverse=True)
+current_rank=1
+for i  in range(len(student_detail)):
+    if i>0 and student_detail[i][2]<student_detail[i-1][2]:
+        current_rank=i+1
+
+    student_detail[i].append(current_rank)
+
+
+print(f"{'rank':<6}{'name':<15}{'roll':<8}{'Total':<8}{'Percentage':<12}{'Grade':<6}")
+
+
+for s in student_detail:
+    print(f"{s[5]:<6}{s[0]:15}{s[1]:<10}{s[2]:<8}{s[3]:<12.2f}{s[4]:<6}")
         
     
         
