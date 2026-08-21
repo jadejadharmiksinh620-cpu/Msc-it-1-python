@@ -4,4 +4,4 @@ from ranking import rank_data
 students=get_data()
 cal_data(students)
 rank_data(students)
-print(students)
+
