@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    
+    <form action="/update/{{task.id}}" method="POST">
+        <center><h2>Update the Task</h2></center>
+        <label>Title</label>
+        <input type="text" name="title" value="{{task.title}}">
+
+        <br><br>
+
+        <label>Description</label>
+        <textarea name="description">{{ task.description}}</textarea>
+
+        <label>Priority</label>
+       <select name="priority">
+           <option value="high">HIGH</option>
+            <option value="medium">MEDIUM</option>
+             <option value="low">LOW</option>
+        </select>
+
+        <br><br>
+
+        <label>Due DAte</label>
+        <input type="Date" name="due_date" value="{{task.due_date}}">
+
+        <br><br>
+
+        <button type="submit">UPDATE</button>
+    </form>
+</body>
+</html>
