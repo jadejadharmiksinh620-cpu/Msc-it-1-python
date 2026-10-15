@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body><div style="display:flex;flex-direction: column;">
+
+    <form  action="/submit" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Priority</td>
+                    <td>Complete</td>
+                    <td>Due_date</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" id="title" name="title" required>
+                    </td>
+                    <td>
+                        <textarea id="description" name="description" rows="4" cols="40"></textarea>
+                    </td>
+                    <td>
+                        <select name="priority" id="priority">
+                            <option value="high">HIGH</option>
+                            <option value="medium">MEDIUM</option>
+                            <option value="low">LOW</option> 
+                        </select>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="is_completed">Complete
+                    </td>
+                    <td>
+                        <input type="date" id="due_date" name="due_date">
+                    </td>
+
+
+                </tr>
+                
+            </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+    <div>
+        <form action="/get" method="get">
+             <button type="submit">Show Data</button>
+        </form>
+        <div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                        <th>Is_Completed</th>
+                        <th>Due_date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in t1 %}
+                        <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.title }}</td>
+                        <td>{{ i.description }}</td>
+                        <td>{{ i.priority }}</td>
+                        <td>{{ i.is_complited }}</td>
+                        <td>{{ i.due_date.strftime('%d-%m-%Y') }}</td>
+                        <td>
+                            <form action="/delete" method="POST">
+                                <input type="hidden" name="e_id" id="e_id" value="{{i.id}}">
+                                <button type="submit">DELETE</button>
+                            </form>
+                        </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    </div>
+</body>
+</html>
